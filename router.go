@@ -32,13 +32,17 @@ func initializeRouter() *gin.Engine {
 				continue
 			}
 
-			artist := messageJSON["track"].(map[string]interface{})["artist"]
-
-			body := fmt.Sprintf(
-				`{"custom_status":{"emoji_name":"spotify","emoji_id":"%s","text":"%s"}}`,
-				environment.SpotifyEmojiID,
-				fmt.Sprintf("Écoute %s", artist),
-			)
+			var body string
+			if messageJSON["is_playing"] == true {
+				artist := messageJSON["track"].(map[string]interface{})["artist"]
+				body = fmt.Sprintf(
+					`{"custom_status":{"emoji_name":"spotify","emoji_id":"%s","text":"%s"}}`,
+					environment.SpotifyEmojiID,
+					fmt.Sprintf("Écoute %s", artist),
+				)
+			} else {
+				body = `{"custom_status":{"emoji_name":null,"emoji_id":null,"text":null}}`
+			}
 
 			token := fmt.Sprintf("%s", environment.DiscordToken)
 
