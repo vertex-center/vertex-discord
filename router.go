@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/quentinguidee/microservice-core/pubsub"
@@ -22,7 +23,22 @@ func initializeRouter() *gin.Engine {
 				panic(err)
 			}
 
-			body := fmt.Sprintf(`{"custom_status":{"emoji_name":"spotify","emoji_id":"%s"}}`, environment.SpotifyEmojiID)
+			println(msg.String())
+
+			var messageJSON map[string]interface{}
+			err = json.Unmarshal([]byte(msg.Payload), &messageJSON)
+			if err != nil {
+				fmt.Printf("Failed to parse message to JSON: %v\n", err)
+				continue
+			}
+
+			artist := messageJSON["track"].(map[string]interface{})["artist"]
+
+			body := fmt.Sprintf(
+				`{"custom_status":{"emoji_name":"spotify","emoji_id":"%s","text":"%s"}}`,
+				environment.SpotifyEmojiID,
+				fmt.Sprintf("Écoute %s", artist),
+			)
 
 			token := fmt.Sprintf("%s", environment.DiscordToken)
 
@@ -32,16 +48,11 @@ func initializeRouter() *gin.Engine {
 			req.Header.Set("Accept", "*/*")
 
 			client := &http.Client{}
-			res, err := client.Do(req)
+			_, err = client.Do(req)
 			if err != nil {
 				fmt.Println(err.Error())
 				return
 			}
-
-			println(token)
-			println(res.Status)
-
-			println(msg.String())
 		}
 	}()
 
