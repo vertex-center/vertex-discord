@@ -10,8 +10,9 @@ import (
 var environment Environment
 
 type Environment struct {
-	DiscordToken   string `env:"DISCORD_TOKEN,required"`
-	SpotifyEmojiID string `env:"SPOTIFY_EMOJI_ID,required"`
+	DiscordToken     string `env:"DISCORD_TOKEN,required"`
+	SpotifyEmojiID   string `env:"SPOTIFY_EMOJI_ID,required"`
+	SpotifyEmojiName string `env:"SPOTIFY_EMOJI_ID,required"`
 }
 
 func main() {
