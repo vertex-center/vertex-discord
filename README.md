@@ -1,23 +1,32 @@
-# Discord Service `BETA`
+<p align="center">
+    <img height="96" src="https://github.com/vertex-center/vertex-design/raw/main/logos/transparent/vertex_logo_transparent.png" alt="Vertex logo" />
+</p>
+<h1 align="center">Vertex Discord</h1>
 
-A Discord microservice for your Home Lab.
+<p align="center">
+<img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/vertex-center/vertex-discord?color=DE3C4B&labelColor=1E212B&style=for-the-badge">
+<img alt="GitHub license" src="https://img.shields.io/github/license/vertex-center/vertex-discord?color=DE3C4B&labelColor=1E212B&style=for-the-badge">
+<img alt="GitHub contributors" src="https://img.shields.io/github/contributors/vertex-center/vertex-discord?color=DE3C4B&labelColor=1E212B&style=for-the-badge">
+</p>
+
+## About
+
+Vertex service to communicate between Discord and your Vertex network.
 
 ## Features
 
-- [x] **Spotify**
-
-  The *Discord Service* connects to the [Spotify Service](https://github.com/quentinguidee/spotify-service) via [Redis Pub/Sub](https://redis.io/docs/manual/pubsub/), to display the artist you're currently listening, with an icon of your choice.
+- Retrieve events from Vertex Spotify to change your Discord status (emoji and message).
 
   <img width="231" alt="image" src="https://user-images.githubusercontent.com/12123721/219262662-e6dfaa9d-dfd6-4c7c-8e00-38e4d3c7a9ff.png">
 
-  The status disappear when the music is paused.
+## Install
 
-- [ ] *Coming soon...*
+Vertex Discord is compatible with the Vertex Installer.
 
-## Setup
+## Related
 
-*This service is currently a work-in-progress.*
+See the [Vertex](https://github.com/vertex-center/vertex) repository to see other services available.
 
-- Install Redis. Run an instance with the `redis-server` command.
-- Install [Spotify Service](https://github.com/quentinguidee/spotify-service)
-- Run `./discordservice`
+## License
+
+[Vertex Discord](https://github.com/vertex-center/vertex-discord) is released under the [MIT License](./LICENSE.md).
